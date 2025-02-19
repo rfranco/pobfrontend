@@ -36,7 +36,6 @@ load_pob:
 	git clone https://github.com/PathOfBuildingCommunity/PathOfBuilding.git; \
 	pushd PathOfBuilding; \
 	git fetch; \
-	git add . && git reset --hard HEAD && git checkout $$(git describe --tags $$(git rev-list --tags --max-count=1)); \
 	popd
 
 luacurl:
@@ -50,7 +49,9 @@ luacurl:
 # curl is used since mesonInstaller.sh copies over the shared library dylib
 # dylibbundler is used to copy over dylibs that lcurl.so uses
 tools:
-	arch --x86_64 brew install qt@5 luajit zlib meson curl dylibbundler gcc@12
+	arch --x86_64 brew install qt@5 luajit zlib meson curl dylibbundler gcc@12 luarocks; \
+	sudo luarocks install luautf8 --lua-version 5.1; \
+	cp ~/.luarocks/lib/lua/5.1/lua-utf8.so .
 
 # We don't usually modify the PathOfBuilding directory, so there's rarely a
 # need to delete it. We separate it out to a separate task.

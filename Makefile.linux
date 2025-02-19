@@ -10,7 +10,7 @@ all: frontend pob
 
 pob: load_pob luacurl frontend
 	pushd PathOfBuilding; \
-	unzip runtime-win32.zip lua/xml.lua lua/base64.lua lua/sha1.lua; \
+	unzip runtime-win32.zip lua/xml.lua lua/base64.lua lua/sha1.lua lua/dkjson.lua; \
 	mv lua/*.lua src/; \
 	rmdir lua; \
 	cp ../lcurl.so src/; \
